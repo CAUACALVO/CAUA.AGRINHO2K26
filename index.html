@@ -1,1 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RaizesFortes | Agricultura Sustentável</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --azul-principal:#082B4F;
+    --azul-secundario:#0D4D7D;
+    --verde-claro:#7EE081;
+    --verde-escuro:#1F6B3A;
+    --branco:#ffffff;
+    --texto:#EAF7FF;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#071c33;
+    color:var(--texto);
+    overflow-x:hidden;
+}
+
+/* FUNDO AMAZÔNIA */
+.background{
+    position:fixed;
+    inset:0;
+    background:
+    linear-gradient(rgba(4,16,35,.82), rgba(4,16,35,.88)),
+    url("https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=2000");
+    background-size:cover;
+    background-position:center;
+    filter:blur(3px);
+    transform:scale(1.05);
+    z-index:-2;
+}
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at top, rgba(126,224,129,.15), transparent 50%),
+    radial-gradient(circle at bottom right, rgba(13,77,125,.3), transparent 40%);
+    z-index:-1;
+}
+
+/* NAVBAR */
+
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    z-index:1000;
+    backdrop-filter:blur(20px);
+    background:rgba(8,43,79,.6);
+    border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.nav-container{
+    max-width:1300px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 40px;
+}
+
+.logo{
+    font-size:1.8rem;
+    font-weight:700;
+    color:var(--verde-claro);
+}
+
+.logo span{
+    color:white;
+}
+
+nav ul{
+    display:flex;
+    gap:30px;
+    list-style:none;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:var(--verde-claro);
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:120px 20px;
+}
+
+.hero-content{
+    max-width:900px;
+    animation:fadeUp 1.2s ease;
+}
+
+.hero h1{
+    font-size:5rem;
+    line-height:1;
+    margin-bottom:20px;
+    background:linear-gradient(to right,#fff,#7EE081);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    font-size:1.2rem;
+    color:#d5e9ff;
+    margin-bottom:35px;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 35px;
+    border-radius:50px;
+    text-decoration:none;
+    color:white;
+    background:linear-gradient(135deg,var(--verde-claro),var(--verde-escuro));
+    font-weight:600;
+    box-shadow:0 0 25px rgba(126,224,129,.5);
+    transition:.4s;
+}
+
+.btn:hover{
+    transform:translateY(-5px);
+}
+
+/* SEÇÕES */
+
+section{
+    max-width:1300px;
+    margin:auto;
+    padding:120px 30px;
+}
+
+.section-title{
+    text-align:center;
+    font-size:3rem;
+    margin-bottom:70px;
+    color:white;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:rgba(255,255,255,.06);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:25px;
+    padding:35px;
+    transition:.5s;
+    overflow:hidden;
+    position:relative;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    width:200px;
+    height:200px;
+    background:radial-gradient(var(--verde-claro),transparent);
+    top:-100px;
+    right:-100px;
+    opacity:.15;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color:rgba(126,224,129,.5);
+}
+
+.icon{
+    width:90px;
+    height:90px;
+    margin-bottom:20px;
+}
+
+.card h3{
+    margin-bottom:15px;
+    color:var(--verde-claro);
+}
+
+/* ESTATÍSTICAS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:25px;
+}
+
+.stat{
+    text-align:center;
+    background:rgba(255,255,255,.05);
+    padding:40px;
+    border-radius:25px;
+}
+
+.stat h2{
+    color:var(--verde-claro);
+    font-size:3rem;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:50px;
+    border-top:1px solid rgba(255,255,255,.08);
+    background:rgba(0,0,0,.2);
+}
+
+/* ANIMAÇÕES */
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.card{
+    animation:fadeUp 1s ease;
+}
+
+.floating{
+    animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+/* RESPONSIVO */
+
+@media(max-width:768px){
+    .hero h1{
+        font-size:3rem;
+    }
+
+    nav ul{
+        display:none;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="background"></div>
+<div class="overlay"></div>
+
+<nav>
+<div class="nav-container">
+<div class="logo">Raizes<span>Fortes</span></div>
+
+<ul>
+<li><a href="#sobre">Sobre</a></li>
+<li><a href="#praticas">Práticas</a></li>
+<li><a href="#impacto">Impacto</a></li>
+<li><a href="#contato">Contato</a></li>
+</ul>
+</div>
+</nav>
+
+<section class="hero">
+
+<div class="hero-content">
+<h1>RaizesFortes</h1>
+
+<p>
+Cultivando o futuro através da agricultura sustentável,
+tecnologia verde e preservação ambiental.
+</p>
+
+<a href="#sobre" class="btn">
+Explorar
+</a>
+
+</div>
+
+</section>
+
+<section id="sobre">
+
+<h2 class="section-title">
+Agricultura Sustentável
+</h2>
+
+<div class="grid">
+
+<div class="card">
+<svg class="icon floating" viewBox="0 0 100 100">
+<path fill="#7EE081"
+d="M50 10 C30 35 25 60 50 90 C75 60 70 35 50 10Z"/>
+</svg>
+
+<h3>Produção Responsável</h3>
+
+<p>
+Cultivo que respeita os ciclos naturais e reduz impactos ambientais.
+</p>
+</div>
+
+<div class="card">
+<svg class="icon floating" viewBox="0 0 100 100">
+<circle cx="50" cy="50" r="35" fill="#7EE081"/>
+<path d="M50 15V85" stroke="#082B4F" stroke-width="5"/>
+</svg>
+
+<h3>Conservação do Solo</h3>
+
+<p>
+Técnicas modernas para manter a fertilidade e evitar erosões.
+</p>
+</div>
+
+<div class="card">
+<svg class="icon floating" viewBox="0 0 100 100">
+<path fill="#7EE081"
+d="M20 60 Q50 10 80 60 Q50 90 20 60Z"/>
+</svg>
+
+<h3>Preservação Ambiental</h3>
+
+<p>
+Integração entre produção agrícola e proteção dos ecossistemas.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="praticas">
+
+<h2 class="section-title">
+Práticas Sustentáveis
+</h2>
+
+<div class="grid">
+
+<div class="card">
+🌱
+<h3>Rotação de Culturas</h3>
+<p>
+Melhora a qualidade do solo e reduz pragas naturalmente.
+</p>
+</div>
+
+<div class="card">
+💧
+<h3>Irrigação Inteligente</h3>
+<p>
+Uso eficiente da água através de monitoramento tecnológico.
+</p>
+</div>
+
+<div class="card">
+☀️
+<h3>Energia Renovável</h3>
+<p>
+Utilização de energia solar para operações agrícolas.
+</p>
+</div>
+
+<div class="card">
+🌳
+<h3>Agroflorestas</h3>
+<p>
+Integração entre árvores, biodiversidade e produção agrícola.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="impacto">
+
+<h2 class="section-title">
+Nosso Impacto
+</h2>
+
+<div class="stats">
+
+<div class="stat">
+<h2>85%</h2>
+<p>Economia de Água</p>
+</div>
+
+<div class="stat">
+<h2>70%</h2>
+<p>Redução de Emissões</p>
+</div>
+
+<div class="stat">
+<h2>120+</h2>
+<p>Projetos Verdes</p>
+</div>
+
+<div class="stat">
+<h2>50k</h2>
+<p>Árvores Preservadas</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="contato">
+
+<h2 class="section-title">
+Construindo um Futuro Verde
+</h2>
+
+<div class="card" style="text-align:center">
+
+<h3>Junte-se ao movimento RaizesFortes</h3>
+
+<p style="margin:20px 0">
+Promovendo inovação agrícola, sustentabilidade e preservação da Amazônia.
+</p>
+
+<a href="#" class="btn">
+Entrar em Contato
+</a>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 RaizesFortes • Agricultura Sustentável • Amazônia Viva
+</footer>
+
+<script>
+
+// efeito de partículas simples
+
+for(let i=0;i<30;i++){
+
+const dot=document.createElement("div");
+
+dot.style.position="fixed";
+dot.style.width="4px";
+dot.style.height="4px";
+dot.style.borderRadius="50%";
+dot.style.background="#7EE081";
+dot.style.opacity="0.3";
+
+dot.style.left=Math.random()*100+"vw";
+dot.style.top=Math.random()*100+"vh";
+
+dot.style.pointerEvents="none";
+dot.style.zIndex="-1";
+
+document.body.appendChild(dot);
+
+let speed=Math.random()*3+1;
+
+setInterval(()=>{
+let y=parseFloat(dot.style.top);
+y-=0.05*speed;
+
+if(y<0) y=100;
+
+dot.style.top=y+"vh";
+
+},20);
+
+}
+
+</script>
+
+</body>
+</html>
