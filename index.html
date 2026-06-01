@@ -3,359 +3,635 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RaizesFortes | Agricultura Sustentável</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>RaizesFortes • 𝘾𝘼𝙐𝘼̃ 𝙈𝙊𝙍𝘼𝙄𝙎</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
 :root{
-    --azul-principal:#082B4F;
-    --azul-secundario:#0D4D7D;
-    --verde-claro:#7EE081;
-    --verde-escuro:#1F6B3A;
-    --branco:#ffffff;
-    --texto:#EAF7FF;
+--azul-profundo:#030B1A;
+--azul-neon:#00AFFF;
+--verde-neon:#5EFF8A;
+--verde-floresta:#0B5D33;
+--branco:#F5FDFF;
 }
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Outfit',sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
 }
 
 body{
-    background:#071c33;
-    color:var(--texto);
-    overflow-x:hidden;
+background:var(--azul-profundo);
+overflow-x:hidden;
+color:white;
 }
 
-/* FUNDO AMAZÔNIA */
-.background{
-    position:fixed;
-    inset:0;
-    background:
-    linear-gradient(rgba(4,16,35,.82), rgba(4,16,35,.88)),
-    url("https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=2000");
-    background-size:cover;
-    background-position:center;
-    filter:blur(3px);
-    transform:scale(1.05);
-    z-index:-2;
+/* =======================
+FUNDO AMAZÔNIA
+======================= */
+
+.bg{
+position:fixed;
+inset:0;
+
+background:
+linear-gradient(
+rgba(3,11,26,.75),
+rgba(3,11,26,.90)
+),
+url("https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=2200");
+
+background-size:cover;
+background-position:center;
+filter:blur(6px);
+transform:scale(1.1);
+
+z-index:-10;
 }
 
-.overlay{
-    position:fixed;
-    inset:0;
-    background:
-    radial-gradient(circle at top, rgba(126,224,129,.15), transparent 50%),
-    radial-gradient(circle at bottom right, rgba(13,77,125,.3), transparent 40%);
-    z-index:-1;
+/* =======================
+NOISE
+======================= */
+
+body::after{
+content:"";
+position:fixed;
+inset:0;
+opacity:.03;
+pointer-events:none;
+
+background-image:
+repeating-radial-gradient(
+circle at 0 0,
+transparent 0,
+#fff 1px,
+transparent 2px
+);
+
+z-index:9999;
 }
 
-/* NAVBAR */
+/* =======================
+CURSOR
+======================= */
+
+.cursor{
+position:fixed;
+width:40px;
+height:40px;
+border-radius:50%;
+
+background:
+radial-gradient(
+circle,
+var(--verde-neon),
+transparent
+);
+
+filter:blur(8px);
+pointer-events:none;
+z-index:99999;
+mix-blend-mode:screen;
+}
+
+/* =======================
+AURORAS
+======================= */
+
+.aurora{
+position:fixed;
+width:900px;
+height:900px;
+border-radius:50%;
+
+background:
+radial-gradient(
+circle,
+rgba(94,255,138,.35),
+transparent 70%
+);
+
+filter:blur(120px);
+
+animation:
+auroraMove 18s infinite alternate;
+
+z-index:-5;
+}
+
+.aurora2{
+background:
+radial-gradient(
+circle,
+rgba(0,175,255,.25),
+transparent 70%
+);
+
+animation-duration:26s;
+}
+
+@keyframes auroraMove{
+
+0%{
+transform:
+translate(-200px,-100px)
+scale(1);
+}
+
+100%{
+transform:
+translate(350px,200px)
+scale(1.4);
+}
+
+}
+
+/* =======================
+BLOB ORGÂNICO
+======================= */
+
+.blob{
+
+position:fixed;
+
+width:700px;
+height:700px;
+
+background:
+linear-gradient(
+135deg,
+var(--verde-neon),
+var(--azul-neon)
+);
+
+opacity:.15;
+
+filter:blur(100px);
+
+animation:
+morph 12s infinite ease-in-out;
+
+z-index:-4;
+}
+
+@keyframes morph{
+
+0%{
+border-radius:40% 60% 70% 30%;
+transform:translate(-100px,200px);
+}
+
+50%{
+border-radius:70% 30% 40% 60%;
+transform:translate(100px,250px);
+}
+
+100%{
+border-radius:40% 60% 70% 30%;
+transform:translate(-100px,200px);
+}
+
+}
+
+/* =======================
+NAV
+======================= */
 
 nav{
-    position:fixed;
-    width:100%;
-    top:0;
-    z-index:1000;
-    backdrop-filter:blur(20px);
-    background:rgba(8,43,79,.6);
-    border-bottom:1px solid rgba(255,255,255,.1);
+position:fixed;
+top:0;
+width:100%;
+z-index:1000;
+
+backdrop-filter:blur(20px);
+
+background:
+rgba(0,0,0,.15);
+
+border-bottom:
+1px solid rgba(255,255,255,.05);
 }
 
-.nav-container{
-    max-width:1300px;
-    margin:auto;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:18px 40px;
+.nav{
+max-width:1400px;
+margin:auto;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:20px 40px;
 }
 
 .logo{
-    font-size:1.8rem;
-    font-weight:700;
-    color:var(--verde-claro);
+font-size:2rem;
+font-weight:800;
+
+background:
+linear-gradient(
+90deg,
+white,
+var(--verde-neon)
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
-.logo span{
-    color:white;
+.menu{
+display:flex;
+gap:30px;
 }
 
-nav ul{
-    display:flex;
-    gap:30px;
-    list-style:none;
+.menu a{
+text-decoration:none;
+color:white;
+transition:.3s;
 }
 
-nav a{
-    color:white;
-    text-decoration:none;
-    transition:.3s;
+.menu a:hover{
+color:var(--verde-neon);
 }
 
-nav a:hover{
-    color:var(--verde-claro);
+/* =======================
+SECTIONS
+======================= */
+
+section{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:120px 40px;
+position:relative;
 }
 
-/* HERO */
+/* =======================
+HERO
+======================= */
 
 .hero{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:120px 20px;
+text-align:center;
+flex-direction:column;
 }
 
-.hero-content{
-    max-width:900px;
-    animation:fadeUp 1.2s ease;
+.badge{
+padding:10px 20px;
+
+border:
+1px solid rgba(255,255,255,.15);
+
+background:
+rgba(255,255,255,.04);
+
+backdrop-filter:blur(20px);
+
+border-radius:100px;
+
+margin-bottom:25px;
 }
 
 .hero h1{
-    font-size:5rem;
-    line-height:1;
-    margin-bottom:20px;
-    background:linear-gradient(to right,#fff,#7EE081);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+
+font-size:clamp(4rem,10vw,9rem);
+
+background:
+linear-gradient(
+90deg,
+#fff,
+#5EFF8A,
+#00AFFF,
+#fff
+);
+
+background-size:400%;
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+animation:
+gradientMove 8s linear infinite;
+}
+
+@keyframes gradientMove{
+
+0%{
+background-position:0%;
+}
+
+100%{
+background-position:400%;
+}
+
 }
 
 .hero p{
-    font-size:1.2rem;
-    color:#d5e9ff;
-    margin-bottom:35px;
+max-width:800px;
+font-size:1.3rem;
+opacity:.8;
+margin-top:20px;
+line-height:1.8;
 }
 
-.btn{
-    display:inline-block;
-    padding:15px 35px;
-    border-radius:50px;
-    text-decoration:none;
-    color:white;
-    background:linear-gradient(135deg,var(--verde-claro),var(--verde-escuro));
-    font-weight:600;
-    box-shadow:0 0 25px rgba(126,224,129,.5);
-    transition:.4s;
+.button{
+margin-top:40px;
+
+padding:18px 40px;
+
+border:none;
+cursor:pointer;
+
+border-radius:100px;
+
+background:
+linear-gradient(
+135deg,
+var(--verde-neon),
+var(--azul-neon)
+);
+
+color:black;
+font-weight:700;
+
+box-shadow:
+0 0 30px rgba(94,255,138,.5);
+
+transition:.4s;
 }
 
-.btn:hover{
-    transform:translateY(-5px);
+.button:hover{
+transform:translateY(-6px) scale(1.05);
 }
 
-/* SEÇÕES */
+/* =======================
+TÍTULOS
+======================= */
 
-section{
-    max-width:1300px;
-    margin:auto;
-    padding:120px 30px;
+.title{
+
+font-size:4rem;
+margin-bottom:60px;
+
+background:
+linear-gradient(
+90deg,
+white,
+var(--verde-neon)
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
-.section-title{
-    text-align:center;
-    font-size:3rem;
-    margin-bottom:70px;
-    color:white;
-}
+/* =======================
+CARDS
+======================= */
 
 .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:30px;
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(300px,1fr));
+
+gap:35px;
+
+width:100%;
+max-width:1300px;
 }
 
 .card{
-    background:rgba(255,255,255,.06);
-    backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,.1);
-    border-radius:25px;
-    padding:35px;
-    transition:.5s;
-    overflow:hidden;
-    position:relative;
-}
 
-.card::before{
-    content:"";
-    position:absolute;
-    width:200px;
-    height:200px;
-    background:radial-gradient(var(--verde-claro),transparent);
-    top:-100px;
-    right:-100px;
-    opacity:.15;
+background:
+rgba(255,255,255,.05);
+
+backdrop-filter:
+blur(30px);
+
+border:
+1px solid rgba(255,255,255,.1);
+
+border-radius:30px;
+
+padding:35px;
+
+transform-style:preserve-3d;
+
+transition:.5s;
 }
 
 .card:hover{
-    transform:translateY(-10px);
-    border-color:rgba(126,224,129,.5);
+
+transform:
+rotateX(8deg)
+rotateY(-8deg)
+translateY(-15px);
+
+box-shadow:
+0 0 60px rgba(94,255,138,.3),
+0 0 120px rgba(0,175,255,.2);
 }
 
-.icon{
-    width:90px;
-    height:90px;
-    margin-bottom:20px;
+.card svg{
+width:90px;
+height:90px;
+margin-bottom:20px;
 }
 
 .card h3{
-    margin-bottom:15px;
-    color:var(--verde-claro);
+color:var(--verde-neon);
+margin-bottom:15px;
+font-size:1.5rem;
 }
 
-/* ESTATÍSTICAS */
+.card p{
+opacity:.8;
+line-height:1.8;
+}
+
+/* =======================
+STATS
+======================= */
 
 .stats{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:25px;
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+width:100%;
+max-width:1200px;
 }
 
 .stat{
-    text-align:center;
-    background:rgba(255,255,255,.05);
-    padding:40px;
-    border-radius:25px;
+
+padding:40px;
+
+border-radius:25px;
+
+background:
+rgba(255,255,255,.05);
+
+backdrop-filter:blur(20px);
+
+text-align:center;
 }
 
 .stat h2{
-    color:var(--verde-claro);
-    font-size:3rem;
+
+font-size:4rem;
+
+background:
+linear-gradient(
+90deg,
+var(--verde-neon),
+var(--azul-neon)
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
-/* FOOTER */
+/* =======================
+PARTÍCULAS
+======================= */
+
+.particle{
+position:fixed;
+border-radius:50%;
+pointer-events:none;
+z-index:-1;
+}
+
+/* =======================
+FOOTER
+======================= */
 
 footer{
-    text-align:center;
-    padding:50px;
-    border-top:1px solid rgba(255,255,255,.08);
-    background:rgba(0,0,0,.2);
+padding:80px;
+text-align:center;
+opacity:.7;
 }
 
-/* ANIMAÇÕES */
-
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(50px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-.card{
-    animation:fadeUp 1s ease;
-}
-
-.floating{
-    animation:float 4s ease-in-out infinite;
-}
-
-@keyframes float{
-    50%{
-        transform:translateY(-10px);
-    }
-}
-
-/* RESPONSIVO */
-
-@media(max-width:768px){
-    .hero h1{
-        font-size:3rem;
-    }
-
-    nav ul{
-        display:none;
-    }
-}
 </style>
 </head>
 <body>
 
-<div class="background"></div>
-<div class="overlay"></div>
+<div class="bg"></div>
+
+<div class="aurora"></div>
+<div class="aurora aurora2"></div>
+
+<div class="blob"></div>
+
+<div class="cursor"></div>
 
 <nav>
-<div class="nav-container">
-<div class="logo">Raizes<span>Fortes</span></div>
 
-<ul>
-<li><a href="#sobre">Sobre</a></li>
-<li><a href="#praticas">Práticas</a></li>
-<li><a href="#impacto">Impacto</a></li>
-<li><a href="#contato">Contato</a></li>
-</ul>
+<div class="nav">
+
+<div class="logo">
+RaizesFortes
 </div>
+
+<div class="menu">
+<a href="#sobre">Sobre</a>
+<a href="#praticas">Práticas</a>
+<a href="#impacto">Impacto</a>
+</div>
+
+</div>
+
 </nav>
 
 <section class="hero">
 
-<div class="hero-content">
-<h1>RaizesFortes</h1>
+<div class="badge">
+🌿 Agricultura Sustentável do Futuro
+</div>
+
+<h1>
+RaizesFortes
+</h1>
 
 <p>
-Cultivando o futuro através da agricultura sustentável,
-tecnologia verde e preservação ambiental.
+Uma experiência digital viva inspirada na Amazônia.
+Tecnologia, biodiversidade, regeneração do solo,
+energia limpa e agricultura inteligente conectadas
+em um ecossistema sustentável.
 </p>
 
-<a href="#sobre" class="btn">
-Explorar
-</a>
-
-</div>
+<button class="button">
+Explorar o Futuro
+</button>
 
 </section>
 
 <section id="sobre">
 
-<h2 class="section-title">
-Agricultura Sustentável
+<div>
+
+<h2 class="title">
+Ecossistema Sustentável
 </h2>
 
 <div class="grid">
 
 <div class="card">
-<svg class="icon floating" viewBox="0 0 100 100">
-<path fill="#7EE081"
+
+<svg viewBox="0 0 100 100">
+<path fill="#5EFF8A"
 d="M50 10 C30 35 25 60 50 90 C75 60 70 35 50 10Z"/>
 </svg>
 
-<h3>Produção Responsável</h3>
+<h3>Produção Regenerativa</h3>
 
 <p>
-Cultivo que respeita os ciclos naturais e reduz impactos ambientais.
+Recuperação dos solos através de técnicas agrícolas
+que fortalecem os ecossistemas naturais.
 </p>
+
 </div>
 
 <div class="card">
-<svg class="icon floating" viewBox="0 0 100 100">
-<circle cx="50" cy="50" r="35" fill="#7EE081"/>
-<path d="M50 15V85" stroke="#082B4F" stroke-width="5"/>
+
+<svg viewBox="0 0 100 100">
+<circle cx="50" cy="50" r="35" fill="#00AFFF"/>
 </svg>
 
-<h3>Conservação do Solo</h3>
+<h3>Monitoramento Inteligente</h3>
 
 <p>
-Técnicas modernas para manter a fertilidade e evitar erosões.
+Sensores, dados e automação para uma produção
+mais eficiente e sustentável.
 </p>
+
 </div>
 
 <div class="card">
-<svg class="icon floating" viewBox="0 0 100 100">
-<path fill="#7EE081"
+
+<svg viewBox="0 0 100 100">
+<path fill="#5EFF8A"
 d="M20 60 Q50 10 80 60 Q50 90 20 60Z"/>
 </svg>
 
-<h3>Preservação Ambiental</h3>
+<h3>Preservação da Amazônia</h3>
 
 <p>
-Integração entre produção agrícola e proteção dos ecossistemas.
+Produzir alimentos protegendo a biodiversidade
+e os recursos naturais.
 </p>
+
+</div>
+
 </div>
 
 </div>
@@ -364,42 +640,34 @@ Integração entre produção agrícola e proteção dos ecossistemas.
 
 <section id="praticas">
 
-<h2 class="section-title">
-Práticas Sustentáveis
+<div>
+
+<h2 class="title">
+Tecnologias Verdes
 </h2>
 
 <div class="grid">
 
 <div class="card">
-🌱
-<h3>Rotação de Culturas</h3>
-<p>
-Melhora a qualidade do solo e reduz pragas naturalmente.
-</p>
+<h3>🌱 Agroflorestas</h3>
+<p>Sistemas produtivos integrados com a natureza.</p>
 </div>
 
 <div class="card">
-💧
-<h3>Irrigação Inteligente</h3>
-<p>
-Uso eficiente da água através de monitoramento tecnológico.
-</p>
+<h3>☀️ Energia Solar</h3>
+<p>Produção agrícola alimentada por energia limpa.</p>
 </div>
 
 <div class="card">
-☀️
-<h3>Energia Renovável</h3>
-<p>
-Utilização de energia solar para operações agrícolas.
-</p>
+<h3>💧 Irrigação Inteligente</h3>
+<p>Economia máxima de recursos hídricos.</p>
 </div>
 
 <div class="card">
-🌳
-<h3>Agroflorestas</h3>
-<p>
-Integração entre árvores, biodiversidade e produção agrícola.
-</p>
+<h3>🛰 Agricultura Digital</h3>
+<p>Uso de satélites, IA e análise preditiva.</p>
+</div>
+
 </div>
 
 </div>
@@ -408,8 +676,10 @@ Integração entre árvores, biodiversidade e produção agrícola.
 
 <section id="impacto">
 
-<h2 class="section-title">
-Nosso Impacto
+<div>
+
+<h2 class="title">
+Impacto Positivo
 </h2>
 
 <div class="stats">
@@ -426,35 +696,15 @@ Nosso Impacto
 
 <div class="stat">
 <h2>120+</h2>
-<p>Projetos Verdes</p>
+<p>Projetos Sustentáveis</p>
 </div>
 
 <div class="stat">
-<h2>50k</h2>
+<h2>50K</h2>
 <p>Árvores Preservadas</p>
 </div>
 
 </div>
-
-</section>
-
-<section id="contato">
-
-<h2 class="section-title">
-Construindo um Futuro Verde
-</h2>
-
-<div class="card" style="text-align:center">
-
-<h3>Junte-se ao movimento RaizesFortes</h3>
-
-<p style="margin:20px 0">
-Promovendo inovação agrícola, sustentabilidade e preservação da Amazônia.
-</p>
-
-<a href="#" class="btn">
-Entrar em Contato
-</a>
 
 </div>
 
@@ -466,40 +716,83 @@ Entrar em Contato
 
 <script>
 
-// efeito de partículas simples
+/* CURSOR */
 
-for(let i=0;i<30;i++){
+const cursor =
+document.querySelector(".cursor");
 
-const dot=document.createElement("div");
+window.addEventListener("mousemove", e => {
 
-dot.style.position="fixed";
-dot.style.width="4px";
-dot.style.height="4px";
-dot.style.borderRadius="50%";
-dot.style.background="#7EE081";
-dot.style.opacity="0.3";
+cursor.style.left =
+e.clientX - 20 + "px";
 
-dot.style.left=Math.random()*100+"vw";
-dot.style.top=Math.random()*100+"vh";
+cursor.style.top =
+e.clientY - 20 + "px";
 
-dot.style.pointerEvents="none";
-dot.style.zIndex="-1";
+});
 
-document.body.appendChild(dot);
+/* PARTÍCULAS */
 
-let speed=Math.random()*3+1;
+for(let i=0;i<120;i++){
+
+const p =
+document.createElement("div");
+
+p.classList.add("particle");
+
+const size =
+Math.random()*4+1;
+
+p.style.width=size+"px";
+p.style.height=size+"px";
+
+p.style.background=
+Math.random()>.5
+? "#5EFF8A"
+: "#00AFFF";
+
+p.style.left=
+Math.random()*100+"vw";
+
+p.style.top=
+Math.random()*100+"vh";
+
+p.style.opacity=
+Math.random()*.7;
+
+document.body.appendChild(p);
+
+let speed=
+Math.random()*0.5+0.1;
 
 setInterval(()=>{
-let y=parseFloat(dot.style.top);
-y-=0.05*speed;
 
-if(y<0) y=100;
+let top=
+parseFloat(p.style.top);
 
-dot.style.top=y+"vh";
+top-=speed;
 
-},20);
+if(top<0)
+top=100;
+
+p.style.top=
+top+"vh";
+
+},30);
 
 }
+
+/* PARALLAX */
+
+window.addEventListener("scroll",()=>{
+
+const scroll=
+window.scrollY;
+
+document.querySelector(".blob").style.transform=
+`translateY(${scroll*0.15}px)`;
+
+});
 
 </script>
 
